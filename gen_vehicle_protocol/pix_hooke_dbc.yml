@@ -1,0 +1,1897 @@
+car_type: hooke
+protocols:
+  '100':
+    id: '100'
+    name: throttlecommand_100
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 0
+      description: "\u52A0\u901F\u4F7F\u80FD"
+      is_signed_var: false
+      len: 1
+      name: DriveEnCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 15
+      description: "\u8F66\u8F86\u76EE\u6807\u7EB5\u5411\u52A0\u901F\u5EA6\uFF08\u53EF\
+        \u9009\uFF09"
+      is_signed_var: false
+      len: 10
+      name: DriveAcc
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|10]'
+      physical_unit: m/s^2
+      precision: 0.01
+      type: double
+    - bit: 31
+      description: "\u865A\u62DF\u76EE\u6807\u52A0\u901F\u8E0F\u677F\u4F4D\u7F6E"
+      is_signed_var: false
+      len: 16
+      name: DriveThrottlePedalTarget
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|100]'
+      physical_unit: '%'
+      precision: 0.1
+      type: double
+    - bit: 47
+      description: "\u9A7E\u9A76\u901F\u5EA6"
+      is_signed_var: false
+      len: 10
+      name: DriveSpeedTarget
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|40.95]'
+      physical_unit: ' m/s'
+      precision: 0.01
+      type: double
+    - bit: 63
+      description: "\u5FAA\u73AF\u8BA1\u6570"
+      is_signed_var: false
+      len: 8
+      name: CheckSum100
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '101':
+    id: '101'
+    name: brakecommand_101
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 0
+      description: "\u5236\u52A8\u4F7F\u80FD"
+      is_signed_var: false
+      len: 1
+      name: BrakeEnCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 1
+      description: "AEB\u4F7F\u80FD"
+      is_signed_var: false
+      len: 1
+      name: AebEnCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 15
+      description: "\u76EE\u6807\u51CF\u901F\u5EA6\uFF08\u53EF\u9009\uFF09"
+      is_signed_var: false
+      len: 10
+      name: BrakeDec
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|10]'
+      physical_unit: m/s^2
+      precision: 0.01
+      type: double
+    - bit: 31
+      description: "\u865A\u62DF\u76EE\u6807\u5236\u52A8\u8E0F\u677F\u4F4D\u7F6E"
+      is_signed_var: false
+      len: 16
+      name: BrakePedalTarget
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|100]'
+      physical_unit: '%'
+      precision: 0.1
+      type: double
+    - bit: 63
+      description: "\u5FAA\u73AF\u8BA1\u6570"
+      is_signed_var: false
+      len: 8
+      name: CheckSum101
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '102':
+    id: '102'
+    name: steeringcommand_102
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 0
+      description: "\u8F6C\u5411\u4F7F\u80FD"
+      is_signed_var: false
+      len: 1
+      name: SteerEnCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 15
+      description: "\u76EE\u6807\u524D\u8F6E\u8F6C\u901F \uFF08\u65B9\u5411\u76D8\u8F6C\
+        \u901F\uFF09"
+      is_signed_var: false
+      len: 8
+      name: SteerAngleSpeed
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|250]'
+      physical_unit: deg/s
+      precision: 1.0
+      type: int
+    - bit: 31
+      description: "\u76EE\u6807\u524D\u8F6E\u8F6C\u5411\u89D2\uFF08\u65B9\u5411\u76D8\
+        \u8F6C\u89D2\uFF09"
+      is_signed_var: false
+      len: 16
+      name: SteerAngleTarget
+      offset: -500.0
+      order: motorola
+      physical_range: '[-465|465]'
+      physical_unit: deg
+      precision: 1.0
+      type: int
+    - bit: 63
+      description: "\u5FAA\u73AF\u8BA1\u6570"
+      is_signed_var: false
+      len: 8
+      name: CheckSum102
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '103':
+    id: '103'
+    name: gearcommand_103
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 0
+      description: "\u6863\u4F4D\u63A7\u5236\u4F7F\u80FD"
+      is_signed_var: false
+      len: 1
+      name: GearEnCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 10
+      description: "\u76EE\u6807\u6863\u4F4D"
+      is_signed_var: false
+      len: 3
+      name: GearTarget
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 63
+      description: "\u5FAA\u73AF\u8BA1\u6570"
+      is_signed_var: false
+      len: 8
+      name: CheckSum103
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '104':
+    id: '104'
+    name: parkcommand_104
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 0
+      description: "\u9A7B\u8F66\u4F7F\u80FD"
+      is_signed_var: false
+      len: 1
+      name: ParkEnCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 8
+      description: "\u9A7B\u8F66\u6307\u4EE4"
+      is_signed_var: false
+      len: 1
+      name: ParkTarget
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 63
+      description: "\u5FAA\u73AF\u8BA1\u6570"
+      is_signed_var: false
+      len: 8
+      name: CheckSum104
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '105':
+    id: '105'
+    name: vehiclemodecommand_105
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 2
+      description: "\u8F6C\u5411\u6A21\u5F0F\u63A7\u5236"
+      is_signed_var: false
+      len: 3
+      name: SteerModeCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 10
+      description: "\u9A7E\u9A76\u6A21\u5F0F\u63A7\u5236"
+      is_signed_var: false
+      len: 3
+      name: DriveModeCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 17
+      description: "\u8F6C\u5411\u706F\u63A7\u5236"
+      is_signed_var: false
+      len: 2
+      name: TurnLightCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 18
+      description: "\u8FD1\u5149\u706F\u63A7\u5236"
+      is_signed_var: false
+      len: 1
+      name: HeadlightCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 20
+      description: "\u53F3\u8F6C\u8BED\u97F3\u63D0\u793A"
+      is_signed_var: false
+      len: 1
+      name: TurnRightPrompts
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 21
+      description: "\u5DE6\u8F6C\u8BED\u97F3\u63D0\u793A"
+      is_signed_var: false
+      len: 1
+      name: TurnLeftPrompts
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 22
+      description: "\u5012\u6321\u8BED\u97F3\u63D0\u793A"
+      is_signed_var: false
+      len: 1
+      name: BackUpPrompts
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 23
+      description: "\u81EA\u52A8\u9A7E\u9A76\u8B66\u544A\u8BED\u97F3\u63D0\u793A"
+      is_signed_var: false
+      len: 1
+      name: AutoPrompts
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 24
+      description: "VIN\u8BF7\u6C42\uFF08\u8F66\u67B6\u53F7\uFF09 \uFF08\u9884\u7559\
+        \uFF09"
+      is_signed_var: false
+      len: 1
+      name: VehicleVinReq
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 33
+      description: "\u95E8\u63A7\u5236"
+      is_signed_var: false
+      len: 2
+      name: VehicleDoorCtrl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 63
+      description: "\u5FAA\u73AF\u8BA1\u6570"
+      is_signed_var: false
+      len: 8
+      name: CheckSum105
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  3a0:
+    id: 3a0
+    name: automessage_3a0
+    protocol_type: control
+    sender: AUTO
+    vars:
+    - bit: 7
+      description: "\u81EA\u9A7E\u72B6\u6001"
+      is_signed_var: false
+      len: 8
+      name: AutoDriveMode
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 63
+      description: "\u81EA\u52A8\u9A7E\u9A76\u5FC3\u8DF3\u5305"
+      is_signed_var: false
+      len: 8
+      name: AutoHeartbeat
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  3b0:
+    id: 3b0
+    name: remotemessage_3b0
+    protocol_type: report
+    sender: RMT
+    vars:
+    - bit: 7
+      description: "\u8FDC\u63A7\u72B6\u6001"
+      is_signed_var: false
+      len: 8
+      name: RemoteDriveMode
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 63
+      description: "\u8FDC\u63A7\u5FC3\u8DF3\u5305"
+      is_signed_var: false
+      len: 8
+      name: RemoteHeartbeat
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '500':
+    id: '500'
+    name: throttlereport_500
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 1
+      description: "\u9A71\u52A8\u72B6\u6001"
+      is_signed_var: false
+      len: 2
+      name: DriveEnState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 15
+      description: "\u9A71\u52A8\u6545\u969C\u4FE1\u606F1"
+      is_signed_var: false
+      len: 8
+      name: DriveFlt1
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 23
+      description: "\u9A71\u52A8\u6545\u969C\u4FE1\u606F2\uFF08\u63A7\u5236\u6307\u4EE4\
+        \u5468\u671F\u6545\u969C\uFF09"
+      is_signed_var: false
+      len: 8
+      name: DriveFlt2
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 31
+      description: "\u52A0\u901F\u8E0F\u677F\u4F4D\u7F6E\u53CD\u9988"
+      is_signed_var: false
+      len: 16
+      name: DriveThrottlePedalActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|100]'
+      physical_unit: '%'
+      precision: 0.1
+      type: double
+  '501':
+    id: '501'
+    name: brakereport_501
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 1
+      description: "\u5236\u52A8\u72B6\u6001"
+      is_signed_var: false
+      len: 2
+      name: BrakeEnState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 15
+      description: "\u5236\u52A8\u6545\u969C\u4FE1\u606F1"
+      is_signed_var: false
+      len: 8
+      name: BrakeFlt1
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 23
+      description: "\u5236\u52A8\u6545\u969C\u4FE1\u606F2"
+      is_signed_var: false
+      len: 8
+      name: BrakeFlt2
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 31
+      description: "\u5236\u52A8\u8E0F\u677F\u4F4D\u7F6E\u53CD\u9988"
+      is_signed_var: false
+      len: 16
+      name: BrakePedalActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|100]'
+      physical_unit: '%'
+      precision: 0.1
+      type: double
+  '502':
+    id: '502'
+    name: steeringreport_502
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 1
+      description: "\u8F6C\u5411\u72B6\u6001"
+      is_signed_var: false
+      len: 2
+      name: SteerEnState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 15
+      description: "\u8F6C\u5411\u6545\u969C\u4FE1\u606F1"
+      is_signed_var: false
+      len: 8
+      name: SteerFlt1
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 23
+      description: "\u8F6C\u5411\u6545\u969C\u4FE1\u606F2"
+      is_signed_var: false
+      len: 8
+      name: SteerFlt2
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 31
+      description: "\u8F6C\u5411\u89D2\u5EA6\u53CD\u9988"
+      is_signed_var: false
+      len: 16
+      name: SteerAngleActual
+      offset: -500.0
+      order: motorola
+      physical_range: '[-465|465]'
+      physical_unit: deg
+      precision: 1.0
+      type: int
+    - bit: 55
+      description: "\u8F6C\u901F\u53CD\u9988"
+      is_signed_var: false
+      len: 8
+      name: SteerAngleSpeedActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|250]'
+      physical_unit: deg/s
+      precision: 1.0
+      type: int
+  '503':
+    id: '503'
+    name: gearreport_503
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 2
+      description: "\u6863\u4F4D\u9632\u4E8F"
+      is_signed_var: false
+      len: 3
+      name: GearActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 15
+      description: "\u6863\u4F4D\u6545\u969C\u4FE1\u606F"
+      is_signed_var: false
+      len: 8
+      name: GearFlt
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '504':
+    id: '504'
+    name: parkreport_504
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 0
+      description: "\u9A7B\u8F66\u53CD\u9988"
+      is_signed_var: false
+      len: 1
+      name: ParkingActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 15
+      description: "\u9A7B\u8F66\u6545\u969C\u4FE1\u606F"
+      is_signed_var: false
+      len: 8
+      name: ParkFlt
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '505':
+    id: '505'
+    name: vcureport1_505
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 10
+      description: "\u5F53\u524D\u8F6C\u5411\u72B6\u6001"
+      is_signed_var: false
+      len: 3
+      name: SteerModeStatus
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 11
+      description: "\u5F53\u524D\u5239\u8F66\u706F\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: BrakeLightActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 7
+      description: "\u7EB5\u5411\u52A0\uFF08\u51CF\uFF09\u901F\u5EA6\uFF08\u53EF\u9009\
+        \uFF09"
+      is_signed_var: false
+      len: 12
+      name: VehicleAcc
+      offset: 0.0
+      order: motorola
+      physical_range: '[-10|10]'
+      physical_unit: m/s^2
+      precision: 0.01
+      type: double
+    - bit: 23
+      description: "\u8F66\u901F"
+      is_signed_var: true
+      len: 16
+      name: VehicleSpeed
+      offset: 0.0
+      order: motorola
+      physical_range: '[-32.768|32.767]'
+      physical_unit: m/s
+      precision: 0.001
+      type: double
+    - bit: 32
+      description: "AEB\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: AebState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 33
+      is_signed_var: false
+      len: 1
+      name: VehicleFrontCrashState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 34
+      is_signed_var: false
+      len: 1
+      name: BackCrashState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 36
+      is_signed_var: false
+      len: 2
+      name: VehicleModeState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 39
+      is_signed_var: false
+      len: 3
+      name: DriveModeStatus
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 47
+      description: "\u6545\u969C\u7801"
+      is_signed_var: false
+      len: 8
+      name: VehicleErrcode
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 51
+      description: "\u8F66\u8F86\u5DE5\u4F5C\u72B6\u6001"
+      is_signed_var: false
+      len: 4
+      name: CarWorkState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|15]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 53
+      description: "\u8F66\u8F86\u7535\u6E90\u72B6\u6001"
+      is_signed_var: false
+      len: 2
+      name: CarPowerState
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 54
+      description: "\u5141\u8BB8\u81EA\u52A8\u9A7E\u9A76\u884C\u9A76\u6307\u4EE4"
+      is_signed_var: false
+      len: 1
+      name: AllowSelfDrivingRun
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 55
+      description: "\u9065\u63A7\u5668\u8FDE\u63A5\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: RcuConnectionStatus
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 57
+      description: "\u8F6C\u5411\u706F\u72B6\u6001"
+      is_signed_var: false
+      len: 2
+      name: TurnLightActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 58
+      description: "\u706F\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: HeadlightActual
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 60
+      description: "\u793A\u5BBD\u706F\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: ClearanceLampActural
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 63
+      description: "\u6025\u505C\u72B6\u6001\u53CD\u9988"
+      is_signed_var: false
+      len: 3
+      name: VcuChassisEStopStaFb
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|7]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '506':
+    id: '506'
+    name: wheelspeedreport_506
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: true
+      len: 16
+      name: WheelSpeedFl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65.535]'
+      physical_unit: m/s
+      precision: 0.001
+      type: double
+    - bit: 23
+      is_signed_var: true
+      len: 16
+      name: WheelSpeedFr
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65.535]'
+      physical_unit: m/s
+      precision: 0.001
+      type: double
+    - bit: 39
+      is_signed_var: true
+      len: 16
+      name: WheelSpeedRl
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65.535]'
+      physical_unit: m/s
+      precision: 0.001
+      type: double
+    - bit: 55
+      is_signed_var: true
+      len: 16
+      name: WheelSpeedRr
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65.535]'
+      physical_unit: m/s
+      precision: 0.001
+      type: double
+  '507':
+    id: '507'
+    name: uitrsensor1_507
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 16
+      name: UiUss8ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 23
+      is_signed_var: false
+      len: 16
+      name: UiUss9ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 39
+      is_signed_var: false
+      len: 16
+      name: UiUss10ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 55
+      is_signed_var: false
+      len: 16
+      name: UiUss11ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+  '508':
+    id: '508'
+    name: uitrsensor2_508
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 16
+      name: UiUss8ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 23
+      is_signed_var: false
+      len: 16
+      name: UiUss9ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 39
+      is_signed_var: false
+      len: 16
+      name: UiUss10ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 55
+      is_signed_var: false
+      len: 16
+      name: UiUss11ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+  '509':
+    id: '509'
+    name: uitrsensor3_509
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 16
+      name: UiUss2ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 23
+      is_signed_var: false
+      len: 16
+      name: UiUss3ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 39
+      is_signed_var: false
+      len: 16
+      name: UiUss4ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 55
+      is_signed_var: false
+      len: 16
+      name: UiUss5ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+  '510':
+    id: '510'
+    name: uitrsensor4_510
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 16
+      name: UiUss2ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 23
+      is_signed_var: false
+      len: 16
+      name: UiUss3ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 39
+      is_signed_var: false
+      len: 16
+      name: UiUss4ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 55
+      is_signed_var: false
+      len: 16
+      name: UiUss5ToFIndirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+  '511':
+    id: '511'
+    name: uitrsensor5_511
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 16
+      name: UiUss0ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 23
+      is_signed_var: false
+      len: 16
+      name: UiUss1ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 39
+      is_signed_var: false
+      len: 16
+      name: UiUss6ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+    - bit: 55
+      is_signed_var: false
+      len: 16
+      name: UiUss7ToFDirect
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|65535]'
+      physical_unit: cm
+      precision: 0.01724
+      type: double
+  '512':
+    id: '512'
+    name: bmsreport_512
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      description: "\u7535\u6C60\u7535\u538B"
+      is_signed_var: false
+      len: 16
+      name: BatteryVoltage
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|300]'
+      physical_unit: V
+      precision: 0.01
+      type: double
+    - bit: 23
+      description: "\u7535\u6C60\u7535\u6D41"
+      is_signed_var: true
+      len: 16
+      name: BatteryCurrent
+      offset: -3200.0
+      order: motorola
+      physical_range: '[-3200|3353.5]'
+      physical_unit: A
+      precision: 0.1
+      type: double
+    - bit: 39
+      description: "\u7535\u6C60SOC"
+      is_signed_var: false
+      len: 8
+      name: BatterySoc
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|100]'
+      physical_unit: '%'
+      precision: 1.0
+      type: int
+    - bit: 55
+      is_signed_var: false
+      len: 8
+      name: BatteryLeadacidVoltage
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: V
+      precision: 1.0
+      type: int
+  '514':
+    id: '514'
+    name: vinresp1_514
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 8
+      name: Vin00
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 15
+      is_signed_var: false
+      len: 8
+      name: Vin01
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 23
+      is_signed_var: false
+      len: 8
+      name: Vin02
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 31
+      is_signed_var: false
+      len: 8
+      name: Vin03
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 39
+      is_signed_var: false
+      len: 8
+      name: Vin04
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 47
+      is_signed_var: false
+      len: 8
+      name: Vin05
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 55
+      is_signed_var: false
+      len: 8
+      name: Vin06
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 63
+      is_signed_var: false
+      len: 8
+      name: Vin07
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '515':
+    id: '515'
+    name: vinresp2_515
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 8
+      name: Vin08
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 15
+      is_signed_var: false
+      len: 8
+      name: Vin09
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 23
+      is_signed_var: false
+      len: 8
+      name: Vin10
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 31
+      is_signed_var: false
+      len: 8
+      name: Vin11
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 39
+      is_signed_var: false
+      len: 8
+      name: Vin12
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 47
+      is_signed_var: false
+      len: 8
+      name: Vin13
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 55
+      is_signed_var: false
+      len: 8
+      name: Vin14
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+    - bit: 63
+      is_signed_var: false
+      len: 8
+      name: Vin15
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '516':
+    id: '516'
+    name: vinresp3_516
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      is_signed_var: false
+      len: 8
+      name: Vin16
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '519':
+    id: '519'
+    name: vehicledoorreport_519
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 0
+      description: "\u5F00\u95E8\u4E2D"
+      is_signed_var: false
+      len: 1
+      name: DoorOpenSta
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 1
+      description: "\u5173\u95E8\u4E2D"
+      is_signed_var: false
+      len: 1
+      name: DoorCloseSta
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 2
+      description: "\u5F00\u95E8\u5230\u4F4D"
+      is_signed_var: false
+      len: 1
+      name: DoorOpenInplace
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 3
+      description: "\u5173\u95E8\u5230\u4F4D"
+      is_signed_var: false
+      len: 1
+      name: DoorCloseInplace
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 4
+      description: "\u5F00\u95E8\u6545\u969C"
+      is_signed_var: false
+      len: 1
+      name: DoorOpenTimeout
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 5
+      description: "\u5173\u95E8\u6545\u969C"
+      is_signed_var: false
+      len: 1
+      name: DoorCloseTimeout
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 6
+      description: "\u95E8\u6309\u94AE\u4F7F\u80FD\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: DoorButtonEnable
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 9
+      is_signed_var: false
+      len: 2
+      name: DoorReportSta
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|3]'
+      physical_unit: ''
+      precision: 1.0
+      type: int
+  '522':
+    id: '522'
+    name: vehiclemileagefb_522
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 7
+      description: "\u603B\u8BA1\u91CC\u7A0B"
+      is_signed_var: false
+      len: 24
+      name: VehicleOdo
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1677721.5]'
+      physical_unit: km
+      precision: 0.1
+      type: double
+    - bit: 31
+      description: "\u5C0F\u8BA1\u91CC\u7A0B"
+      is_signed_var: false
+      len: 24
+      name: VehicleSubMileage
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|167772.215]'
+      physical_unit: km
+      precision: 0.001
+      type: double
+    - bit: 55
+      description: "\u5269\u4F59\u91CC\u7A0B"
+      is_signed_var: false
+      len: 8
+      name: VcuRemainingMile
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|255]'
+      physical_unit: km
+      precision: 1.0
+      type: int
+  53b:
+    id: 53b
+    name: vcutransfer_53b
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 4
+      description: "PAD\u81EA\u52A8\u9A7E\u9A76\u542F\u52A8\u6309\u94AE"
+      is_signed_var: false
+      len: 1
+      name: VcuPadAutoStart
+      offset: 0.0
+      order: motorola
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 47
+      description: "\u8F66\u5916\u6E29\u5EA6"
+      is_signed_var: true
+      len: 8
+      name: AcOutTemp
+      offset: 0.0
+      order: motorola
+      physical_range: '[-128|127]'
+      physical_unit: "\u2103"
+      precision: 1.0
+      type: int
+    - bit: 55
+      description: "\u8F66\u5185\u6E29\u5EA6"
+      is_signed_var: true
+      len: 8
+      name: AcInTemp
+      offset: 0.0
+      order: motorola
+      physical_range: '[-128|127]'
+      physical_unit: "\u2103"
+      precision: 1.0
+      type: int
+  5f4:
+    id: 5f4
+    name: bcmmessage4_5f4
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 8
+      description: "\u4EA4\u6D41\u5145L\u7EBF\u6E29\u5EA6"
+      is_signed_var: false
+      len: 8
+      name: Ltemp
+      offset: -40.0
+      order: intel
+      physical_range: '[-40|215]'
+      physical_unit: "\u2103"
+      precision: 1.0
+      type: int
+    - bit: 16
+      description: "\u4EA4\u6D41\u5145N\u7EBF\u6E29\u5EA6"
+      is_signed_var: false
+      len: 8
+      name: Ntemp
+      offset: -40.0
+      order: intel
+      physical_range: '[-40|215]'
+      physical_unit: "\u2103"
+      precision: 1.0
+      type: int
+    - bit: 24
+      description: "\u524D\u5DE6\u5B89\u5168\u5E26\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SafeBeltSta1
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 25
+      description: "\u524D\u4E2D\u5B89\u5168\u5E26\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SafeBeltSta2
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 26
+      description: "\u524D\u53F3\u5B89\u5168\u5E26\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SafeBeltSta3
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 27
+      description: "\u540E\u5DE6\u5B89\u5168\u5E26\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SafeBeltSta4
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 28
+      description: "\u540E\u4E2D\u5B89\u5168\u5E26\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SafeBeltSta5
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 29
+      description: "\u540E\u53F3\u5B89\u5168\u5E26\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SafeBeltSta6
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 30
+      description: "\u524D\u5DE6\u5EA7\u6905\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SeatSta1
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 31
+      description: "\u524D\u4E2D\u5EA7\u6905\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SeatSta2
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 32
+      description: "\u524D\u53F3\u5EA7\u6905\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SeatSta3
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 33
+      description: "\u540E\u5DE6\u5EA7\u6905\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SeatSta4
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 34
+      description: "\u540E\u4E2D\u5EA7\u6905\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SeatSta5
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 35
+      description: "\u540E\u53F3\u5EA7\u6905\u72B6\u6001"
+      is_signed_var: false
+      len: 1
+      name: SeatSta6
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 36
+      description: "\u5F00\u5173\u91CF\u8F93\u5165\u53E313"
+      is_signed_var: false
+      len: 1
+      name: IoIn13
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 37
+      description: "\u5F00\u5173\u91CF\u8F93\u5165\u53E314"
+      is_signed_var: false
+      len: 1
+      name: IoIn14
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 38
+      description: "\u5F00\u5173\u91CF\u8F93\u5165\u53E315"
+      is_signed_var: false
+      len: 1
+      name: IoIn15
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 39
+      description: "\u5F00\u5173\u91CF\u8F93\u5165\u53E316"
+      is_signed_var: false
+      len: 1
+      name: IoIn16
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 40
+      description: "\u7535\u6D41\u578B\u8F93\u5165\u53E31"
+      is_signed_var: false
+      len: 1
+      name: IoCur1
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 41
+      description: "\u7535\u6D41\u578B\u8F93\u5165\u53E32"
+      is_signed_var: false
+      len: 1
+      name: IoCur2
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 42
+      description: "\u7535\u6D41\u578B\u8F93\u5165\u53E33"
+      is_signed_var: false
+      len: 1
+      name: IoCur3
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 43
+      description: "\u7535\u6D41\u578B\u8F93\u5165\u53E34"
+      is_signed_var: false
+      len: 1
+      name: IoCur4
+      offset: 0.0
+      order: intel
+      physical_range: '[0|1]'
+      physical_unit: ''
+      precision: 1.0
+      type: bool
+    - bit: 44
+      description: "\u7535\u6D41\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E3"
+      is_signed_var: false
+      len: 1
+      name: AdCVin
+      offset: 0.0
+      order: intel
+      physical_range: '[0|20]'
+      physical_unit: mV
+      precision: 1.0
+      type: bool
+    - bit: 46
+      description: "\u7535\u538B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E34(0~10V)"
+      is_signed_var: false
+      len: 10
+      name: AdVVin5
+      offset: 0.0
+      order: intel
+      physical_range: '[0|10000]'
+      physical_unit: mV
+      precision: 10.0
+      type: double
+  5f5:
+    id: 5f5
+    name: bcmmessage5_5f5
+    protocol_type: report
+    sender: VCU
+    vars:
+    - bit: 0
+      description: "\u7535\u963B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E31"
+      is_signed_var: false
+      len: 8
+      name: AdRVin1
+      offset: 0.0
+      order: intel
+      physical_range: '[0|500]'
+      physical_unit: "\u03A9"
+      precision: 2.0
+      type: double
+    - bit: 8
+      description: "\u7535\u963B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E32"
+      is_signed_var: false
+      len: 8
+      name: AdRVin2
+      offset: 0.0
+      order: intel
+      physical_range: '[0|500]'
+      physical_unit: "\u03A9"
+      precision: 2.0
+      type: double
+    - bit: 16
+      description: "\u7535\u963B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E33"
+      is_signed_var: false
+      len: 8
+      name: AdRVin3
+      offset: 0.0
+      order: intel
+      physical_range: '[0|500]'
+      physical_unit: "\u03A9"
+      precision: 2.0
+      type: double
+    - bit: 24
+      description: "\u7535\u963B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E34"
+      is_signed_var: false
+      len: 8
+      name: AdRVin4
+      offset: 0.0
+      order: intel
+      physical_range: '[0|500]'
+      physical_unit: "\u03A9"
+      precision: 2.0
+      type: double
+    - bit: 32
+      description: "\u7535\u538B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E31(\u70DF\
+        \u96FE\u4F20\u611F\u5668\uFF09"
+      is_signed_var: false
+      len: 10
+      name: AdVVin1
+      offset: 0.0
+      order: intel
+      physical_range: '[0|3500]'
+      physical_unit: mV
+      precision: 5.0
+      type: double
+    - bit: 42
+      description: "\u7535\u538B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E32\uFF08\
+        CO2\u4F20\u611F\u5668\uFF09"
+      is_signed_var: false
+      len: 10
+      name: AdVVin2
+      offset: 0.0
+      order: intel
+      physical_range: '[0|3500]'
+      physical_unit: mV
+      precision: 5.0
+      type: double
+    - bit: 52
+      description: "\u7535\u538B\u578B\u4F20\u611F\u5668\u8F93\u5165\u53E33"
+      is_signed_var: false
+      len: 10
+      name: AdVVin3
+      offset: 0.0
+      order: intel
+      physical_range: '[0|3500]'
+      physical_unit: mV
+      precision: 5.0
+      type: double

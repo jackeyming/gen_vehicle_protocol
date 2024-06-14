@@ -1,0 +1,8 @@
+dbc_file: pix_hooke.dbc
+protocol_conf: pix_hooke_dbc.yml
+car_type: hooke
+sender_list: [AutoMessage,VehicleModeCommand,ParkCommand,GearCommand,SteeringCommand,BrakeCommand,ThrottleCommand]
+sender: AUTO
+black_list: []
+
+output_dir: output/

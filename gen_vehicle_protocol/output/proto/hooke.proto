@@ -1,0 +1,471 @@
+syntax = "proto2";
+
+package apollo.canbus;
+
+message Throttlecommand_100 {
+// Control Message
+  // 加速使能 [] [0|1]
+  optional bool driveenctrl = 1;
+  // 车辆目标纵向加速度（可选） [m/s^2] [0|10]
+  optional double driveacc = 2;
+  // 虚拟目标加速踏板位置 [%] [0|100]
+  optional double drivethrottlepedaltarget = 3;
+  // 驾驶速度 [ m/s] [0|40.95]
+  optional double drivespeedtarget = 4;
+  // 循环计数 [] [0|255]
+  optional int32 checksum100 = 5;
+}
+
+message Brakecommand_101 {
+// Control Message
+  // 制动使能 [] [0|1]
+  optional bool brakeenctrl = 1;
+  // AEB使能 [] [0|1]
+  optional bool aebenctrl = 2;
+  // 目标减速度（可选） [m/s^2] [0|10]
+  optional double brakedec = 3;
+  // 虚拟目标制动踏板位置 [%] [0|100]
+  optional double brakepedaltarget = 4;
+  // 循环计数 [] [0|255]
+  optional int32 checksum101 = 5;
+}
+
+message Steeringcommand_102 {
+// Control Message
+  // 转向使能 [] [0|1]
+  optional bool steerenctrl = 1;
+  // 目标前轮转速 （方向盘转速） [deg/s] [0|250]
+  optional int32 steeranglespeed = 2;
+  // 目标前轮转向角（方向盘转角） [deg] [-465|465]
+  optional int32 steerangletarget = 3;
+  // 循环计数 [] [0|255]
+  optional int32 checksum102 = 4;
+}
+
+message Gearcommand_103 {
+// Control Message
+  // 档位控制使能 [] [0|1]
+  optional bool gearenctrl = 1;
+  // 目标档位 [] [0|7]
+  optional int32 geartarget = 2;
+  // 循环计数 [] [0|255]
+  optional int32 checksum103 = 3;
+}
+
+message Parkcommand_104 {
+// Control Message
+  // 驻车使能 [] [0|1]
+  optional bool parkenctrl = 1;
+  // 驻车指令 [] [0|1]
+  optional bool parktarget = 2;
+  // 循环计数 [] [0|255]
+  optional int32 checksum104 = 3;
+}
+
+message Vehiclemodecommand_105 {
+// Control Message
+  // 转向模式控制 [] [0|7]
+  optional int32 steermodectrl = 1;
+  // 驾驶模式控制 [] [0|7]
+  optional int32 drivemodectrl = 2;
+  // 转向灯控制 [] [0|3]
+  optional int32 turnlightctrl = 3;
+  // 近光灯控制 [] [0|1]
+  optional bool headlightctrl = 4;
+  // 右转语音提示 [] [0|1]
+  optional bool turnrightprompts = 5;
+  // 左转语音提示 [] [0|1]
+  optional bool turnleftprompts = 6;
+  // 倒挡语音提示 [] [0|1]
+  optional bool backupprompts = 7;
+  // 自动驾驶警告语音提示 [] [0|1]
+  optional bool autoprompts = 8;
+  // VIN请求（车架号） （预留） [] [0|1]
+  optional bool vehiclevinreq = 9;
+  // 门控制 [] [0|3]
+  optional int32 vehicledoorctrl = 10;
+  // 循环计数 [] [0|255]
+  optional int32 checksum105 = 11;
+}
+
+message Automessage_3a0 {
+// Control Message
+  // 自驾状态 [] [0|255]
+  optional int32 autodrivemode = 1;
+  // 自动驾驶心跳包 [] [0|255]
+  optional int32 autoheartbeat = 2;
+}
+
+message Remotemessage_3b0 {
+// Report Message
+  // 远控状态 [] [0|255]
+  optional int32 remotedrivemode = 1;
+  // 远控心跳包 [] [0|255]
+  optional int32 remoteheartbeat = 2;
+}
+
+message Throttlereport_500 {
+// Report Message
+  // 驱动状态 [] [0|3]
+  optional int32 driveenstate = 1;
+  // 驱动故障信息1 [] [0|255]
+  optional int32 driveflt1 = 2;
+  // 驱动故障信息2（控制指令周期故障） [] [0|255]
+  optional int32 driveflt2 = 3;
+  // 加速踏板位置反馈 [%] [0|100]
+  optional double drivethrottlepedalactual = 4;
+}
+
+message Brakereport_501 {
+// Report Message
+  // 制动状态 [] [0|3]
+  optional int32 brakeenstate = 1;
+  // 制动故障信息1 [] [0|255]
+  optional int32 brakeflt1 = 2;
+  // 制动故障信息2 [] [0|255]
+  optional int32 brakeflt2 = 3;
+  // 制动踏板位置反馈 [%] [0|100]
+  optional double brakepedalactual = 4;
+}
+
+message Steeringreport_502 {
+// Report Message
+  // 转向状态 [] [0|3]
+  optional int32 steerenstate = 1;
+  // 转向故障信息1 [] [0|255]
+  optional int32 steerflt1 = 2;
+  // 转向故障信息2 [] [0|255]
+  optional int32 steerflt2 = 3;
+  // 转向角度反馈 [deg] [-465|465]
+  optional int32 steerangleactual = 4;
+  // 转速反馈 [deg/s] [0|250]
+  optional int32 steeranglespeedactual = 5;
+}
+
+message Gearreport_503 {
+// Report Message
+  // 档位防亏 [] [0|7]
+  optional int32 gearactual = 1;
+  // 档位故障信息 [] [0|255]
+  optional int32 gearflt = 2;
+}
+
+message Parkreport_504 {
+// Report Message
+  // 驻车反馈 [] [0|1]
+  optional bool parkingactual = 1;
+  // 驻车故障信息 [] [0|255]
+  optional int32 parkflt = 2;
+}
+
+message Vcureport1_505 {
+// Report Message
+  // 当前转向状态 [] [0|7]
+  optional int32 steermodestatus = 1;
+  // 当前刹车灯状态 [] [0|1]
+  optional bool brakelightactual = 2;
+  // 纵向加（减）速度（可选） [m/s^2] [-10|10]
+  optional double vehicleacc = 3;
+  // 车速 [m/s] [-32.768|32.767]
+  optional double vehiclespeed = 4;
+  // AEB状态 [] [0|1]
+  optional bool aebstate = 5;
+  // [] [0|1]
+  optional bool vehiclefrontcrashstate = 6;
+  // [] [0|1]
+  optional bool backcrashstate = 7;
+  // [] [0|3]
+  optional int32 vehiclemodestate = 8;
+  // [] [0|7]
+  optional int32 drivemodestatus = 9;
+  // 故障码 [] [0|255]
+  optional int32 vehicleerrcode = 10;
+  // 车辆工作状态 [] [0|15]
+  optional int32 carworkstate = 11;
+  // 车辆电源状态 [] [0|3]
+  optional int32 carpowerstate = 12;
+  // 允许自动驾驶行驶指令 [] [0|1]
+  optional bool allowselfdrivingrun = 13;
+  // 遥控器连接状态 [] [0|1]
+  optional bool rcuconnectionstatus = 14;
+  // 转向灯状态 [] [0|3]
+  optional int32 turnlightactual = 15;
+  // 灯状态 [] [0|1]
+  optional bool headlightactual = 16;
+  // 示宽灯状态 [] [0|1]
+  optional bool clearancelampactural = 17;
+  // 急停状态反馈 [] [0|7]
+  optional int32 vcuchassisestopstafb = 18;
+}
+
+message Wheelspeedreport_506 {
+// Report Message
+  // [m/s] [0|65.535]
+  optional double wheelspeedfl = 1;
+  // [m/s] [0|65.535]
+  optional double wheelspeedfr = 2;
+  // [m/s] [0|65.535]
+  optional double wheelspeedrl = 3;
+  // [m/s] [0|65.535]
+  optional double wheelspeedrr = 4;
+}
+
+message Uitrsensor1_507 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss8tofdirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss9tofdirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss10tofdirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss11tofdirect = 4;
+}
+
+message Uitrsensor2_508 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss8tofindirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss9tofindirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss10tofindirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss11tofindirect = 4;
+}
+
+message Uitrsensor3_509 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss2tofdirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss3tofdirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss4tofdirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss5tofdirect = 4;
+}
+
+message Uitrsensor4_510 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss2tofindirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss3tofindirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss4tofindirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss5tofindirect = 4;
+}
+
+message Uitrsensor5_511 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss0tofdirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss1tofdirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss6tofdirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss7tofdirect = 4;
+}
+
+message Bmsreport_512 {
+// Report Message
+  // 电池电压 [V] [0|300]
+  optional double batteryvoltage = 1;
+  // 电池电流 [A] [-3200|3353.5]
+  optional double batterycurrent = 2;
+  // 电池SOC [%] [0|100]
+  optional int32 batterysoc = 3;
+  // [V] [0|255]
+  optional int32 batteryleadacidvoltage = 4;
+}
+
+message Vinresp1_514 {
+// Report Message
+  // [] [0|255]
+  optional int32 vin00 = 1;
+  // [] [0|255]
+  optional int32 vin01 = 2;
+  // [] [0|255]
+  optional int32 vin02 = 3;
+  // [] [0|255]
+  optional int32 vin03 = 4;
+  // [] [0|255]
+  optional int32 vin04 = 5;
+  // [] [0|255]
+  optional int32 vin05 = 6;
+  // [] [0|255]
+  optional int32 vin06 = 7;
+  // [] [0|255]
+  optional int32 vin07 = 8;
+}
+
+message Vinresp2_515 {
+// Report Message
+  // [] [0|255]
+  optional int32 vin08 = 1;
+  // [] [0|255]
+  optional int32 vin09 = 2;
+  // [] [0|255]
+  optional int32 vin10 = 3;
+  // [] [0|255]
+  optional int32 vin11 = 4;
+  // [] [0|255]
+  optional int32 vin12 = 5;
+  // [] [0|255]
+  optional int32 vin13 = 6;
+  // [] [0|255]
+  optional int32 vin14 = 7;
+  // [] [0|255]
+  optional int32 vin15 = 8;
+}
+
+message Vinresp3_516 {
+// Report Message
+  // [] [0|255]
+  optional int32 vin16 = 1;
+}
+
+message Vehicledoorreport_519 {
+// Report Message
+  // 开门中 [] [0|1]
+  optional bool dooropensta = 1;
+  // 关门中 [] [0|1]
+  optional bool doorclosesta = 2;
+  // 开门到位 [] [0|1]
+  optional bool dooropeninplace = 3;
+  // 关门到位 [] [0|1]
+  optional bool doorcloseinplace = 4;
+  // 开门故障 [] [0|1]
+  optional bool dooropentimeout = 5;
+  // 关门故障 [] [0|1]
+  optional bool doorclosetimeout = 6;
+  // 门按钮使能状态 [] [0|1]
+  optional bool doorbuttonenable = 7;
+  // [] [0|3]
+  optional int32 doorreportsta = 8;
+}
+
+message Vehiclemileagefb_522 {
+// Report Message
+  // 总计里程 [km] [0|1677721.5]
+  optional double vehicleodo = 1;
+  // 小计里程 [km] [0|167772.215]
+  optional double vehiclesubmileage = 2;
+  // 剩余里程 [km] [0|255]
+  optional int32 vcuremainingmile = 3;
+}
+
+message Vcutransfer_53b {
+// Report Message
+  // PAD自动驾驶启动按钮 [] [0|1]
+  optional bool vcupadautostart = 1;
+  // 车外温度 [℃] [-128|127]
+  optional int32 acouttemp = 2;
+  // 车内温度 [℃] [-128|127]
+  optional int32 acintemp = 3;
+}
+
+message Bcmmessage4_5f4 {
+// Report Message
+  // 交流充L线温度 [℃] [-40|215]
+  optional int32 ltemp = 1;
+  // 交流充N线温度 [℃] [-40|215]
+  optional int32 ntemp = 2;
+  // 前左安全带状态 [] [0|1]
+  optional bool safebeltsta1 = 3;
+  // 前中安全带状态 [] [0|1]
+  optional bool safebeltsta2 = 4;
+  // 前右安全带状态 [] [0|1]
+  optional bool safebeltsta3 = 5;
+  // 后左安全带状态 [] [0|1]
+  optional bool safebeltsta4 = 6;
+  // 后中安全带状态 [] [0|1]
+  optional bool safebeltsta5 = 7;
+  // 后右安全带状态 [] [0|1]
+  optional bool safebeltsta6 = 8;
+  // 前左座椅状态 [] [0|1]
+  optional bool seatsta1 = 9;
+  // 前中座椅状态 [] [0|1]
+  optional bool seatsta2 = 10;
+  // 前右座椅状态 [] [0|1]
+  optional bool seatsta3 = 11;
+  // 后左座椅状态 [] [0|1]
+  optional bool seatsta4 = 12;
+  // 后中座椅状态 [] [0|1]
+  optional bool seatsta5 = 13;
+  // 后右座椅状态 [] [0|1]
+  optional bool seatsta6 = 14;
+  // 开关量输入口13 [] [0|1]
+  optional bool ioin13 = 15;
+  // 开关量输入口14 [] [0|1]
+  optional bool ioin14 = 16;
+  // 开关量输入口15 [] [0|1]
+  optional bool ioin15 = 17;
+  // 开关量输入口16 [] [0|1]
+  optional bool ioin16 = 18;
+  // 电流型输入口1 [] [0|1]
+  optional bool iocur1 = 19;
+  // 电流型输入口2 [] [0|1]
+  optional bool iocur2 = 20;
+  // 电流型输入口3 [] [0|1]
+  optional bool iocur3 = 21;
+  // 电流型输入口4 [] [0|1]
+  optional bool iocur4 = 22;
+  // 电流型传感器输入口 [mV] [0|20]
+  optional bool adcvin = 23;
+  // 电压型传感器输入口4(0~10V) [mV] [0|10000]
+  optional double advvin5 = 24;
+}
+
+message Bcmmessage5_5f5 {
+// Report Message
+  // 电阻型传感器输入口1 [Ω] [0|500]
+  optional double adrvin1 = 1;
+  // 电阻型传感器输入口2 [Ω] [0|500]
+  optional double adrvin2 = 2;
+  // 电阻型传感器输入口3 [Ω] [0|500]
+  optional double adrvin3 = 3;
+  // 电阻型传感器输入口4 [Ω] [0|500]
+  optional double adrvin4 = 4;
+  // 电压型传感器输入口1(烟雾传感器） [mV] [0|3500]
+  optional double advvin1 = 5;
+  // 电压型传感器输入口2（CO2传感器） [mV] [0|3500]
+  optional double advvin2 = 6;
+  // 电压型传感器输入口3 [mV] [0|3500]
+  optional double advvin3 = 7;
+}
+
+message Hooke {
+  optional Throttlecommand_100 throttlecommand_100 = 1; // control message
+  optional Brakecommand_101 brakecommand_101 = 2; // control message
+  optional Steeringcommand_102 steeringcommand_102 = 3; // control message
+  optional Gearcommand_103 gearcommand_103 = 4; // control message
+  optional Parkcommand_104 parkcommand_104 = 5; // control message
+  optional Vehiclemodecommand_105 vehiclemodecommand_105 = 6; // control message
+  optional Automessage_3a0 automessage_3a0 = 7; // control message
+  optional Remotemessage_3b0 remotemessage_3b0 = 8; // report message
+  optional Throttlereport_500 throttlereport_500 = 9; // report message
+  optional Brakereport_501 brakereport_501 = 10; // report message
+  optional Steeringreport_502 steeringreport_502 = 11; // report message
+  optional Gearreport_503 gearreport_503 = 12; // report message
+  optional Parkreport_504 parkreport_504 = 13; // report message
+  optional Vcureport1_505 vcureport1_505 = 14; // report message
+  optional Wheelspeedreport_506 wheelspeedreport_506 = 15; // report message
+  optional Uitrsensor1_507 uitrsensor1_507 = 16; // report message
+  optional Uitrsensor2_508 uitrsensor2_508 = 17; // report message
+  optional Uitrsensor3_509 uitrsensor3_509 = 18; // report message
+  optional Uitrsensor4_510 uitrsensor4_510 = 19; // report message
+  optional Uitrsensor5_511 uitrsensor5_511 = 20; // report message
+  optional Bmsreport_512 bmsreport_512 = 21; // report message
+  optional Vinresp1_514 vinresp1_514 = 22; // report message
+  optional Vinresp2_515 vinresp2_515 = 23; // report message
+  optional Vinresp3_516 vinresp3_516 = 24; // report message
+  optional Vehicledoorreport_519 vehicledoorreport_519 = 25; // report message
+  optional Vehiclemileagefb_522 vehiclemileagefb_522 = 26; // report message
+  optional Vcutransfer_53b vcutransfer_53b = 27; // report message
+  optional Bcmmessage4_5f4 bcmmessage4_5f4 = 28; // report message
+  optional Bcmmessage5_5f5 bcmmessage5_5f5 = 29; // report message
+}

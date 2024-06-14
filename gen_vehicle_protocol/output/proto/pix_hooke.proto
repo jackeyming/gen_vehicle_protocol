@@ -1,0 +1,818 @@
+syntax = "proto2";
+
+package apollo.canbus;
+
+message Throttlecommand_100 {
+// Control Message
+  enum DriveenctrlType {
+    DRIVEENCTRL_DISABLE = 0;
+    DRIVEENCTRL_ABLE = 1;
+  }
+  // 加速使能 [] [0|1]
+  optional DriveenctrlType driveenctrl = 1;
+  // 车辆目标纵向加速度（可选） [m/s^2] [0|10]
+  optional double driveacc = 2;
+  // 虚拟目标加速踏板位置 [%] [0|100]
+  optional double drivethrottlepedaltarget = 3;
+  // 驾驶速度 [ m/s] [0|40.95]
+  optional double drivespeedtarget = 4;
+  // 循环计数 [] [0|255]
+  optional int32 checksum100 = 5;
+}
+
+message Brakecommand_101 {
+// Control Message
+  enum BrakeenctrlType {
+    BRAKEENCTRL_DISABLE = 0;
+    BRAKEENCTRL_ABLE = 1;
+  }
+  enum AebenctrlType {
+    AEBENCTRL_DISABLE = 0;
+    AEBENCTRL_ABLE = 1;
+  }
+  // 制动使能 [] [0|1]
+  optional BrakeenctrlType brakeenctrl = 1;
+  // AEB使能 [] [0|1]
+  optional AebenctrlType aebenctrl = 2;
+  // 目标减速度（可选） [m/s^2] [0|10]
+  optional double brakedec = 3;
+  // 虚拟目标制动踏板位置 [%] [0|100]
+  optional double brakepedaltarget = 4;
+  // 循环计数 [] [0|255]
+  optional int32 checksum101 = 5;
+}
+
+message Steeringcommand_102 {
+// Control Message
+  enum SteerenctrlType {
+    STEERENCTRL_DISABLE = 0;
+    STEERENCTRL_ABLE = 1;
+  }
+  // 转向使能 [] [0|1]
+  optional SteerenctrlType steerenctrl = 1;
+  // 目标前轮转速 （方向盘转速） [deg/s] [0|250]
+  optional int32 steeranglespeed = 2;
+  // 目标前轮转向角（方向盘转角） [deg] [-465|465]
+  optional int32 steerangletarget = 3;
+  // 循环计数 [] [0|255]
+  optional int32 checksum102 = 4;
+}
+
+message Gearcommand_103 {
+// Control Message
+  enum GearenctrlType {
+    GEARENCTRL_DISABLE = 0;
+    GEARENCTRL_ABLE = 1;
+  }
+  enum GeartargetType {
+    GEARTARGET_INVALID = 0;
+    GEARTARGET_PARK = 1;
+    GEARTARGET_REVERSE = 2;
+    GEARTARGET_NEUTRAL = 3;
+    GEARTARGET_DRIVE = 4;
+  }
+  // 档位控制使能 [] [0|1]
+  optional GearenctrlType gearenctrl = 1;
+  // 目标档位 [] [0|7]
+  optional GeartargetType geartarget = 2;
+  // 循环计数 [] [0|255]
+  optional int32 checksum103 = 3;
+}
+
+message Parkcommand_104 {
+// Control Message
+  enum ParkenctrlType {
+    PARKENCTRL_DISABLE = 0;
+    PARKENCTRL_ABLE = 1;
+  }
+  enum ParktargetType {
+    PARKTARGET_RELEASE = 0;
+    PARKTARGET_PARKINGTRIGGER = 1;
+  }
+  // 驻车使能 [] [0|1]
+  optional ParkenctrlType parkenctrl = 1;
+  // 驻车指令 [] [0|1]
+  optional ParktargetType parktarget = 2;
+  // 循环计数 [] [0|255]
+  optional int32 checksum104 = 3;
+}
+
+message Vehiclemodecommand_105 {
+// Control Message
+  enum SteermodectrlType {
+    STEERMODECTRL_STANDARD_STEER = 0;
+    STEERMODECTRL_NON_DIRECTION_STEER = 1;
+    STEERMODECTRL_SYNC_DIRECTION_STEER = 2;
+    STEERMODECTRL_OPPOSITION_STEER = 3;
+  }
+  enum DrivemodectrlType {
+    DRIVEMODECTRL_THROTTLE_PADDLE_DRIVE = 0;
+    DRIVEMODECTRL_SPEED_DRIVE = 1;
+  }
+  enum TurnlightctrlType {
+    TURNLIGHTCTRL_TURNLAMP_OFF = 0;
+    TURNLIGHTCTRL_LEFT_TURNLAMP_ON = 1;
+    TURNLIGHTCTRL_RIGHT_TURNLAMP_ON = 2;
+    TURNLIGHTCTRL_HAZARD_WARMING_LAMPSTS_ON = 3;
+  }
+  enum HeadlightctrlType {
+    HEADLIGHTCTRL_OFF = 0;
+    HEADLIGHTCTRL_ON = 1;
+  }
+  enum TurnrightpromptsType {
+    TURNRIGHTPROMPTS_OFF = 0;
+    TURNRIGHTPROMPTS_ON = 1;
+  }
+  enum TurnleftpromptsType {
+    TURNLEFTPROMPTS_OFF = 0;
+    TURNLEFTPROMPTS_ON = 1;
+  }
+  enum BackuppromptsType {
+    BACKUPPROMPTS_OFF = 0;
+    BACKUPPROMPTS_ON = 1;
+  }
+  enum AutopromptsType {
+    AUTOPROMPTS_OFF = 0;
+    AUTOPROMPTS_ON = 1;
+  }
+  enum VehiclevinreqType {
+    VEHICLEVINREQ_VINREQDISABLE = 0;
+    VEHICLEVINREQ_VINREQENABLE = 1;
+  }
+  enum VehicledoorctrlType {
+    VEHICLEDOORCTRL_INVALID = 0;
+    VEHICLEDOORCTRL_CLOSED_DOOR = 1;
+    VEHICLEDOORCTRL_OPEN_DOOR = 2;
+  }
+  // 转向模式控制 [] [0|7]
+  optional SteermodectrlType steermodectrl = 1;
+  // 驾驶模式控制 [] [0|7]
+  optional DrivemodectrlType drivemodectrl = 2;
+  // 转向灯控制 [] [0|3]
+  optional TurnlightctrlType turnlightctrl = 3;
+  // 近光灯控制 [] [0|1]
+  optional HeadlightctrlType headlightctrl = 4;
+  // 右转语音提示 [] [0|1]
+  optional TurnrightpromptsType turnrightprompts = 5;
+  // 左转语音提示 [] [0|1]
+  optional TurnleftpromptsType turnleftprompts = 6;
+  // 倒挡语音提示 [] [0|1]
+  optional BackuppromptsType backupprompts = 7;
+  // 自动驾驶警告语音提示 [] [0|1]
+  optional AutopromptsType autoprompts = 8;
+  // VIN请求（车架号） （预留） [] [0|1]
+  optional VehiclevinreqType vehiclevinreq = 9;
+  // 门控制 [] [0|3]
+  optional VehicledoorctrlType vehicledoorctrl = 10;
+  // 循环计数 [] [0|255]
+  optional int32 checksum105 = 11;
+}
+
+message Automessage_3a0 {
+// Control Message
+  enum AutodrivemodeType {
+    AUTODRIVEMODE_AUTOPLIOT_MODE = 0;
+    AUTODRIVEMODE_RECEIVED_A_REMOTE_REQUEST = 1;
+    AUTODRIVEMODE_ALLOW_REMOTE_TAKEOVER = 2;
+    AUTODRIVEMODE_AUTO_EMERGENCY_STOP = 3;
+  }
+  enum AutoheartbeatType {
+  }
+  // 自驾状态 [] [0|255]
+  optional AutodrivemodeType autodrivemode = 1;
+  // 自动驾驶心跳包 [] [0|255]
+  optional AutoheartbeatType autoheartbeat = 2;
+}
+
+message Remotemessage_3b0 {
+// Report Message
+  enum RemotedrivemodeType {
+    REMOTEDRIVEMODE_NO_REQUEST = 0;
+    REMOTEDRIVEMODE_REMOTE_REQUEST_TAKEOVER = 1;
+    REMOTEDRIVEMODE_REMOTE_TAKEOVER = 2;
+    REMOTEDRIVEMODE_REMOTE_EMENGENCY_STOP = 3;
+  }
+  enum RemoteheartbeatType {
+  }
+  // 远控状态 [] [0|255]
+  optional RemotedrivemodeType remotedrivemode = 1;
+  // 远控心跳包 [] [0|255]
+  optional RemoteheartbeatType remoteheartbeat = 2;
+}
+
+message Throttlereport_500 {
+// Report Message
+  enum DriveenstateType {
+    DRIVEENSTATE_MANUAL = 0;
+    DRIVEENSTATE_AUTO = 1;
+    DRIVEENSTATE_TAKEOVER = 2;
+    DRIVEENSTATE_STANDBY = 3;
+  }
+  enum Driveflt1Type {
+    DRIVEFLT1_NO_FAULT = 0;
+    DRIVEFLT1_DRIVE_SYSTEM_COMMUNICATION_FAULT = 1;
+  }
+  enum Driveflt2Type {
+    DRIVEFLT2_NO_FAULT = 0;
+    DRIVEFLT2_DRIVE_SYSTEM_COMMUNICATION_FAULT = 1;
+  }
+  // 驱动状态 [] [0|3]
+  optional DriveenstateType driveenstate = 1;
+  // 驱动故障信息1 [] [0|255]
+  optional Driveflt1Type driveflt1 = 2;
+  // 驱动故障信息2（控制指令周期故障） [] [0|255]
+  optional Driveflt2Type driveflt2 = 3;
+  // 加速踏板位置反馈 [%] [0|100]
+  optional double drivethrottlepedalactual = 4;
+}
+
+message Brakereport_501 {
+// Report Message
+  enum BrakeenstateType {
+    BRAKEENSTATE_MANUAL = 0;
+    BRAKEENSTATE_AUTO = 1;
+    BRAKEENSTATE_TAKEOVER = 2;
+    BRAKEENSTATE_STANDBY = 3;
+  }
+  enum Brakeflt1Type {
+    BRAKEFLT1_NO_FAULT = 0;
+    BRAKEFLT1_BRAKE_SYSTEM_COMMUNICATION_FAULT = 1;
+  }
+  enum Brakeflt2Type {
+    BRAKEFLT2_NO_FAULT = 0;
+    BRAKEFLT2_BRAKE_SYSTEM_COMMUNICATION_FAULT = 1;
+  }
+  // 制动状态 [] [0|3]
+  optional BrakeenstateType brakeenstate = 1;
+  // 制动故障信息1 [] [0|255]
+  optional Brakeflt1Type brakeflt1 = 2;
+  // 制动故障信息2 [] [0|255]
+  optional Brakeflt2Type brakeflt2 = 3;
+  // 制动踏板位置反馈 [%] [0|100]
+  optional double brakepedalactual = 4;
+}
+
+message Steeringreport_502 {
+// Report Message
+  enum SteerenstateType {
+    STEERENSTATE_MANUAL = 0;
+    STEERENSTATE_AUTO = 1;
+    STEERENSTATE_TAKEOVER = 2;
+    STEERENSTATE_STANDBY = 3;
+  }
+  enum Steerflt1Type {
+    STEERFLT1_NO_FAULT = 0;
+    STEERFLT1_STEER_SYSTEM_COMMUNICATION_FAULT = 1;
+  }
+  enum Steerflt2Type {
+    STEERFLT2_NO_FAULT = 0;
+    STEERFLT2_STEER_SYSTEM_COMMUNICATION_FAULT = 1;
+  }
+  // 转向状态 [] [0|3]
+  optional SteerenstateType steerenstate = 1;
+  // 转向故障信息1 [] [0|255]
+  optional Steerflt1Type steerflt1 = 2;
+  // 转向故障信息2 [] [0|255]
+  optional Steerflt2Type steerflt2 = 3;
+  // 转向角度反馈 [deg] [-465|465]
+  optional int32 steerangleactual = 4;
+  // 转速反馈 [deg/s] [0|250]
+  optional int32 steeranglespeedactual = 5;
+}
+
+message Gearreport_503 {
+// Report Message
+  enum GearactualType {
+    GEARACTUAL_INVALID = 0;
+    GEARACTUAL_PARK = 1;
+    GEARACTUAL_REVERSE = 2;
+    GEARACTUAL_NEUTRAL = 3;
+    GEARACTUAL_DRIVE = 4;
+  }
+  enum GearfltType {
+    GEARFLT_NO_FAULT = 0;
+    GEARFLT_FAULT = 1;
+  }
+  // 档位防亏 [] [0|7]
+  optional GearactualType gearactual = 1;
+  // 档位故障信息 [] [0|255]
+  optional GearfltType gearflt = 2;
+}
+
+message Parkreport_504 {
+// Report Message
+  enum ParkingactualType {
+    PARKINGACTUAL_RELEASE = 0;
+    PARKINGACTUAL_PARKING_TRIGGER = 1;
+  }
+  enum ParkfltType {
+    PARKFLT_NO_FAULT = 0;
+    PARKFLT_FAULT = 1;
+  }
+  // 驻车反馈 [] [0|1]
+  optional ParkingactualType parkingactual = 1;
+  // 驻车故障信息 [] [0|255]
+  optional ParkfltType parkflt = 2;
+}
+
+message Vcureport1_505 {
+// Report Message
+  enum SteermodestatusType {
+    STEERMODESTATUS_STANDARD_STEER_MODE = 0;
+    STEERMODESTATUS_NON_DIRECTION_STEER_MODE = 1;
+    STEERMODESTATUS_SYNC_DIRECTION_STEER_MODE = 2;
+  }
+  enum BrakelightactualType {
+    BRAKELIGHTACTUAL_BRAKELIGHT_OFF = 0;
+    BRAKELIGHTACTUAL_BRAKELIGHT_ON = 1;
+  }
+  enum AebstateType {
+    AEBSTATE_INACTIVE = 0;
+    AEBSTATE_ACTIVE = 1;
+  }
+  enum VehiclefrontcrashstateType {
+    VEHICLEFRONTCRASHSTATE_NO_EVENT = 0;
+    VEHICLEFRONTCRASHSTATE_CRASH_EVENT = 1;
+  }
+  enum BackcrashstateType {
+    BACKCRASHSTATE_NO_EVENT = 0;
+    BACKCRASHSTATE_CRASH_EVENT = 1;
+  }
+  enum VehiclemodestateType {
+    VEHICLEMODESTATE_MANUAL_REMOTE_MODE = 0;
+    VEHICLEMODESTATE_AUTO_MODE = 1;
+    VEHICLEMODESTATE_EMERGENCY_MODE = 2;
+    VEHICLEMODESTATE_STANDBY_MODE = 3;
+  }
+  enum DrivemodestatusType {
+    DRIVEMODESTATUS_THROTTLE_PADDLE_DRIVE_MODE = 0;
+    DRIVEMODESTATUS_SPEED_DRIVE_MODE = 1;
+  }
+  enum CarworkstateType {
+    CARWORKSTATE_INIT = 0;
+    CARWORKSTATE_ONE = 1;
+    CARWORKSTATE_TWO = 2;
+    CARWORKSTATE_THREE = 3;
+    CARWORKSTATE_WORK = 4;
+    CARWORKSTATE_ESTOP = 5;
+    CARWORKSTATE_ERROR = 6;
+    CARWORKSTATE_CRASH = 7;
+  }
+  enum CarpowerstateType {
+    CARPOWERSTATE_OFF = 0;
+    CARPOWERSTATE_ON = 1;
+    CARPOWERSTATE_READY = 2;
+  }
+  enum AllowselfdrivingrunType {
+    ALLOWSELFDRIVINGRUN_NOT_ALLOW = 0;
+    ALLOWSELFDRIVINGRUN_ALLOW = 1;
+  }
+  enum RcuconnectionstatusType {
+    RCUCONNECTIONSTATUS_DISCONNECTD = 0;
+    RCUCONNECTIONSTATUS_CONNECTED = 1;
+  }
+  enum TurnlightactualType {
+    TURNLIGHTACTUAL_TURNLAMPSTS_OFF = 0;
+    TURNLIGHTACTUAL_LEFT_TURNLAMPSTS_ON = 1;
+    TURNLIGHTACTUAL_RIGHT_TURNLAMPSTS_ON = 2;
+    TURNLIGHTACTUAL_HAZARD_WARMINGLAMPSTS_ON = 3;
+  }
+  enum HeadlightactualType {
+    HEADLIGHTACTUAL_OFF = 0;
+    HEADLIGHTACTUAL_ON = 1;
+  }
+  enum ClearancelampacturalType {
+    CLEARANCELAMPACTURAL_OFF = 0;
+    CLEARANCELAMPACTURAL_ON = 1;
+  }
+  enum VcuchassisestopstafbType {
+    VCUCHASSISESTOPSTAFB_INVALID = 0;
+    VCUCHASSISESTOPSTAFB_CAR_EMERGENCY_STOP = 1;
+    VCUCHASSISESTOPSTAFB_RCU_EMERGENCY_STOP = 2;
+    VCUCHASSISESTOPSTAFB_RCU_DISCONNECTED_EMERGENCY_STOP = 3;
+    VCUCHASSISESTOPSTAFB_AUTO_DISCONNECTED_EMERGENCY_STOP = 4;
+    VCUCHASSISESTOPSTAFB_REMOTE_EMERGENCY_STOP = 5;
+    VCUCHASSISESTOPSTAFB_AUTO_EMERGENCY_STOP = 6;
+    VCUCHASSISESTOPSTAFB_CRASH_EMERGENCY_STOP = 7;
+  }
+  // 当前转向状态 [] [0|7]
+  optional SteermodestatusType steermodestatus = 1;
+  // 当前刹车灯状态 [] [0|1]
+  optional BrakelightactualType brakelightactual = 2;
+  // 纵向加（减）速度（可选） [m/s^2] [-10|10]
+  optional double vehicleacc = 3;
+  // 车速 [m/s] [-32.768|32.767]
+  optional double vehiclespeed = 4;
+  // AEB状态 [] [0|1]
+  optional AebstateType aebstate = 5;
+  // [] [0|1]
+  optional VehiclefrontcrashstateType vehiclefrontcrashstate = 6;
+  // [] [0|1]
+  optional BackcrashstateType backcrashstate = 7;
+  // [] [0|3]
+  optional VehiclemodestateType vehiclemodestate = 8;
+  // [] [0|7]
+  optional DrivemodestatusType drivemodestatus = 9;
+  // 故障码 [] [0|255]
+  optional int32 vehicleerrcode = 10;
+  // 车辆工作状态 [] [0|15]
+  optional CarworkstateType carworkstate = 11;
+  // 车辆电源状态 [] [0|3]
+  optional CarpowerstateType carpowerstate = 12;
+  // 允许自动驾驶行驶指令 [] [0|1]
+  optional AllowselfdrivingrunType allowselfdrivingrun = 13;
+  // 遥控器连接状态 [] [0|1]
+  optional RcuconnectionstatusType rcuconnectionstatus = 14;
+  // 转向灯状态 [] [0|3]
+  optional TurnlightactualType turnlightactual = 15;
+  // 灯状态 [] [0|1]
+  optional HeadlightactualType headlightactual = 16;
+  // 示宽灯状态 [] [0|1]
+  optional ClearancelampacturalType clearancelampactural = 17;
+  // 急停状态反馈 [] [0|7]
+  optional VcuchassisestopstafbType vcuchassisestopstafb = 18;
+}
+
+message Wheelspeedreport_506 {
+// Report Message
+  // [m/s] [0|65.535]
+  optional double wheelspeedfl = 1;
+  // [m/s] [0|65.535]
+  optional double wheelspeedfr = 2;
+  // [m/s] [0|65.535]
+  optional double wheelspeedrl = 3;
+  // [m/s] [0|65.535]
+  optional double wheelspeedrr = 4;
+}
+
+message Uitrsensor1_507 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss8tofdirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss9tofdirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss10tofdirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss11tofdirect = 4;
+}
+
+message Uitrsensor2_508 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss8tofindirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss9tofindirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss10tofindirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss11tofindirect = 4;
+}
+
+message Uitrsensor3_509 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss2tofdirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss3tofdirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss4tofdirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss5tofdirect = 4;
+}
+
+message Uitrsensor4_510 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss2tofindirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss3tofindirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss4tofindirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss5tofindirect = 4;
+}
+
+message Uitrsensor5_511 {
+// Report Message
+  // [cm] [0|65535]
+  optional double uiuss0tofdirect = 1;
+  // [cm] [0|65535]
+  optional double uiuss1tofdirect = 2;
+  // [cm] [0|65535]
+  optional double uiuss6tofdirect = 3;
+  // [cm] [0|65535]
+  optional double uiuss7tofdirect = 4;
+}
+
+message Bmsreport_512 {
+// Report Message
+  // 电池电压 [V] [0|300]
+  optional double batteryvoltage = 1;
+  // 电池电流 [A] [-3200|3353.5]
+  optional double batterycurrent = 2;
+  // 电池SOC [%] [0|100]
+  optional int32 batterysoc = 3;
+  // [V] [0|255]
+  optional int32 batteryleadacidvoltage = 4;
+}
+
+message Vinresp1_514 {
+// Report Message
+  // [] [0|255]
+  optional int32 vin00 = 1;
+  // [] [0|255]
+  optional int32 vin01 = 2;
+  // [] [0|255]
+  optional int32 vin02 = 3;
+  // [] [0|255]
+  optional int32 vin03 = 4;
+  // [] [0|255]
+  optional int32 vin04 = 5;
+  // [] [0|255]
+  optional int32 vin05 = 6;
+  // [] [0|255]
+  optional int32 vin06 = 7;
+  // [] [0|255]
+  optional int32 vin07 = 8;
+}
+
+message Vinresp2_515 {
+// Report Message
+  // [] [0|255]
+  optional int32 vin08 = 1;
+  // [] [0|255]
+  optional int32 vin09 = 2;
+  // [] [0|255]
+  optional int32 vin10 = 3;
+  // [] [0|255]
+  optional int32 vin11 = 4;
+  // [] [0|255]
+  optional int32 vin12 = 5;
+  // [] [0|255]
+  optional int32 vin13 = 6;
+  // [] [0|255]
+  optional int32 vin14 = 7;
+  // [] [0|255]
+  optional int32 vin15 = 8;
+}
+
+message Vinresp3_516 {
+// Report Message
+  // [] [0|255]
+  optional int32 vin16 = 1;
+}
+
+message Vehicledoorreport_519 {
+// Report Message
+  enum DooropenstaType {
+    DOOROPENSTA_NONE = 0;
+    DOOROPENSTA_OPENING = 1;
+  }
+  enum DoorclosestaType {
+    DOORCLOSESTA_NONE = 0;
+    DOORCLOSESTA_CLOSING = 1;
+  }
+  enum DooropeninplaceType {
+    DOOROPENINPLACE_NONE = 0;
+    DOOROPENINPLACE_OPENED = 1;
+  }
+  enum DoorcloseinplaceType {
+    DOORCLOSEINPLACE_NONE = 0;
+    DOORCLOSEINPLACE_CLOSED = 1;
+  }
+  enum DooropentimeoutType {
+    DOOROPENTIMEOUT_NONE = 0;
+    DOOROPENTIMEOUT_FAULT = 1;
+  }
+  enum DoorclosetimeoutType {
+    DOORCLOSETIMEOUT_NONE = 0;
+    DOORCLOSETIMEOUT_FAULT = 1;
+  }
+  enum DoorbuttonenableType {
+    DOORBUTTONENABLE_ENBALE = 0;
+    DOORBUTTONENABLE_DISABLE = 1;
+  }
+  // 开门中 [] [0|1]
+  optional DooropenstaType dooropensta = 1;
+  // 关门中 [] [0|1]
+  optional DoorclosestaType doorclosesta = 2;
+  // 开门到位 [] [0|1]
+  optional DooropeninplaceType dooropeninplace = 3;
+  // 关门到位 [] [0|1]
+  optional DoorcloseinplaceType doorcloseinplace = 4;
+  // 开门故障 [] [0|1]
+  optional DooropentimeoutType dooropentimeout = 5;
+  // 关门故障 [] [0|1]
+  optional DoorclosetimeoutType doorclosetimeout = 6;
+  // 门按钮使能状态 [] [0|1]
+  optional DoorbuttonenableType doorbuttonenable = 7;
+  // [] [0|3]
+  optional int32 doorreportsta = 8;
+}
+
+message Vehiclemileagefb_522 {
+// Report Message
+  // 总计里程 [km] [0|1677721.5]
+  optional double vehicleodo = 1;
+  // 小计里程 [km] [0|167772.215]
+  optional double vehiclesubmileage = 2;
+  // 剩余里程 [km] [0|255]
+  optional int32 vcuremainingmile = 3;
+}
+
+message Vcutransfer_53b {
+// Report Message
+  enum VcupadautostartType {
+    VCUPADAUTOSTART_INVALID = 0;
+    VCUPADAUTOSTART_START = 1;
+  }
+  // PAD自动驾驶启动按钮 [] [0|1]
+  optional VcupadautostartType vcupadautostart = 1;
+  // 车外温度 [℃] [-128|127]
+  optional int32 acouttemp = 2;
+  // 车内温度 [℃] [-128|127]
+  optional int32 acintemp = 3;
+}
+
+message Bcmmessage4_5f4 {
+// Report Message
+  enum Safebeltsta1Type {
+    SAFEBELTSTA1_FASTENED = 0;
+    SAFEBELTSTA1_UNFASTENED = 1;
+  }
+  enum Safebeltsta2Type {
+    SAFEBELTSTA2_FASTENED = 0;
+    SAFEBELTSTA2_UNFASTENED = 1;
+  }
+  enum Safebeltsta3Type {
+    SAFEBELTSTA3_FASTENED = 0;
+    SAFEBELTSTA3_UNFASTENED = 1;
+  }
+  enum Safebeltsta4Type {
+    SAFEBELTSTA4_FASTENED = 0;
+    SAFEBELTSTA4_UNFASTENED = 1;
+  }
+  enum Safebeltsta5Type {
+    SAFEBELTSTA5_FASTENED = 0;
+    SAFEBELTSTA5_UNFASTENED = 1;
+  }
+  enum Safebeltsta6Type {
+    SAFEBELTSTA6_FASTENED = 0;
+    SAFEBELTSTA6_UNFASTENED = 1;
+  }
+  enum Seatsta1Type {
+    SEATSTA1_VACANT = 0;
+    SEATSTA1_SOMEONE = 1;
+  }
+  enum Seatsta2Type {
+    SEATSTA2_VACANT = 0;
+    SEATSTA2_SOMEONE = 1;
+  }
+  enum Seatsta3Type {
+    SEATSTA3_VACANT = 0;
+    SEATSTA3_SOMEONE = 1;
+  }
+  enum Seatsta4Type {
+    SEATSTA4_VACANT = 0;
+    SEATSTA4_SOMEONE = 1;
+  }
+  enum Seatsta5Type {
+    SEATSTA5_VACANT = 0;
+    SEATSTA5_SOMEONE = 1;
+  }
+  enum Seatsta6Type {
+    SEATSTA6_VACANT = 0;
+    SEATSTA6_SOMEONE = 1;
+  }
+  enum Ioin13Type {
+    IOIN13_LOW_LEVEL = 0;
+    IOIN13_HIGH_LEVEL = 1;
+  }
+  enum Ioin14Type {
+    IOIN14_LOW_LEVEL = 0;
+    IOIN14_HIGH_LEVEL = 1;
+  }
+  enum Ioin15Type {
+    IOIN15_LOW_LEVEL = 0;
+    IOIN15_HIGH_LEVEL = 1;
+  }
+  enum Ioin16Type {
+    IOIN16_LOW_LEVEL = 0;
+    IOIN16_HIGH_LEVEL = 1;
+  }
+  enum Iocur1Type {
+    IOCUR1_LOW_LEVEL = 0;
+    IOCUR1_HIGH_LEVEL = 1;
+  }
+  enum Iocur2Type {
+    IOCUR2_LOW_LEVEL = 0;
+    IOCUR2_HIGH_LEVEL = 1;
+  }
+  enum Iocur3Type {
+    IOCUR3_LOW_LEVEL = 0;
+    IOCUR3_HIGH_LEVEL = 1;
+  }
+  enum Iocur4Type {
+    IOCUR4_LOW_LEVEL = 0;
+    IOCUR4_HIGH_LEVEL = 1;
+  }
+  // 交流充L线温度 [℃] [-40|215]
+  optional int32 ltemp = 1;
+  // 交流充N线温度 [℃] [-40|215]
+  optional int32 ntemp = 2;
+  // 前左安全带状态 [] [0|1]
+  optional Safebeltsta1Type safebeltsta1 = 3;
+  // 前中安全带状态 [] [0|1]
+  optional Safebeltsta2Type safebeltsta2 = 4;
+  // 前右安全带状态 [] [0|1]
+  optional Safebeltsta3Type safebeltsta3 = 5;
+  // 后左安全带状态 [] [0|1]
+  optional Safebeltsta4Type safebeltsta4 = 6;
+  // 后中安全带状态 [] [0|1]
+  optional Safebeltsta5Type safebeltsta5 = 7;
+  // 后右安全带状态 [] [0|1]
+  optional Safebeltsta6Type safebeltsta6 = 8;
+  // 前左座椅状态 [] [0|1]
+  optional Seatsta1Type seatsta1 = 9;
+  // 前中座椅状态 [] [0|1]
+  optional Seatsta2Type seatsta2 = 10;
+  // 前右座椅状态 [] [0|1]
+  optional Seatsta3Type seatsta3 = 11;
+  // 后左座椅状态 [] [0|1]
+  optional Seatsta4Type seatsta4 = 12;
+  // 后中座椅状态 [] [0|1]
+  optional Seatsta5Type seatsta5 = 13;
+  // 后右座椅状态 [] [0|1]
+  optional Seatsta6Type seatsta6 = 14;
+  // 开关量输入口13 [] [0|1]
+  optional Ioin13Type ioin13 = 15;
+  // 开关量输入口14 [] [0|1]
+  optional Ioin14Type ioin14 = 16;
+  // 开关量输入口15 [] [0|1]
+  optional Ioin15Type ioin15 = 17;
+  // 开关量输入口16 [] [0|1]
+  optional Ioin16Type ioin16 = 18;
+  // 电流型输入口1 [] [0|1]
+  optional Iocur1Type iocur1 = 19;
+  // 电流型输入口2 [] [0|1]
+  optional Iocur2Type iocur2 = 20;
+  // 电流型输入口3 [] [0|1]
+  optional Iocur3Type iocur3 = 21;
+  // 电流型输入口4 [] [0|1]
+  optional Iocur4Type iocur4 = 22;
+  // 电流型传感器输入口 [mV] [0|20]
+  optional bool adcvin = 23;
+  // 电压型传感器输入口4(0~10V) [mV] [0|10000]
+  optional double advvin5 = 24;
+}
+
+message Bcmmessage5_5f5 {
+// Report Message
+  // 电阻型传感器输入口1 [Ω] [0|500]
+  optional double adrvin1 = 1;
+  // 电阻型传感器输入口2 [Ω] [0|500]
+  optional double adrvin2 = 2;
+  // 电阻型传感器输入口3 [Ω] [0|500]
+  optional double adrvin3 = 3;
+  // 电阻型传感器输入口4 [Ω] [0|500]
+  optional double adrvin4 = 4;
+  // 电压型传感器输入口1(烟雾传感器） [mV] [0|3500]
+  optional double advvin1 = 5;
+  // 电压型传感器输入口2（CO2传感器） [mV] [0|3500]
+  optional double advvin2 = 6;
+  // 电压型传感器输入口3 [mV] [0|3500]
+  optional double advvin3 = 7;
+}
+
+message Pix_hooke {
+  optional Throttlecommand_100 throttlecommand_100 = 1; // control message
+  optional Brakecommand_101 brakecommand_101 = 2; // control message
+  optional Steeringcommand_102 steeringcommand_102 = 3; // control message
+  optional Gearcommand_103 gearcommand_103 = 4; // control message
+  optional Parkcommand_104 parkcommand_104 = 5; // control message
+  optional Vehiclemodecommand_105 vehiclemodecommand_105 = 6; // control message
+  optional Automessage_3a0 automessage_3a0 = 7; // control message
+  optional Remotemessage_3b0 remotemessage_3b0 = 8; // report message
+  optional Throttlereport_500 throttlereport_500 = 9; // report message
+  optional Brakereport_501 brakereport_501 = 10; // report message
+  optional Steeringreport_502 steeringreport_502 = 11; // report message
+  optional Gearreport_503 gearreport_503 = 12; // report message
+  optional Parkreport_504 parkreport_504 = 13; // report message
+  optional Vcureport1_505 vcureport1_505 = 14; // report message
+  optional Wheelspeedreport_506 wheelspeedreport_506 = 15; // report message
+  optional Uitrsensor1_507 uitrsensor1_507 = 16; // report message
+  optional Uitrsensor2_508 uitrsensor2_508 = 17; // report message
+  optional Uitrsensor3_509 uitrsensor3_509 = 18; // report message
+  optional Uitrsensor4_510 uitrsensor4_510 = 19; // report message
+  optional Uitrsensor5_511 uitrsensor5_511 = 20; // report message
+  optional Bmsreport_512 bmsreport_512 = 21; // report message
+  optional Vinresp1_514 vinresp1_514 = 22; // report message
+  optional Vinresp2_515 vinresp2_515 = 23; // report message
+  optional Vinresp3_516 vinresp3_516 = 24; // report message
+  optional Vehicledoorreport_519 vehicledoorreport_519 = 25; // report message
+  optional Vehiclemileagefb_522 vehiclemileagefb_522 = 26; // report message
+  optional Vcutransfer_53b vcutransfer_53b = 27; // report message
+  optional Bcmmessage4_5f4 bcmmessage4_5f4 = 28; // report message
+  optional Bcmmessage5_5f5 bcmmessage5_5f5 = 29; // report message
+}
